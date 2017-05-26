@@ -1,7 +1,7 @@
 import Ember from 'ember';
+import { capitalize } from '../../../helpers/capitalize';
 
 export default Ember.Controller.extend({
-  songCreationStarted: false,
 
   queryParams: {
     sortBy: 'sort',
@@ -27,6 +27,13 @@ export default Ember.Controller.extend({
     return options[this.get('sortBy')].split(',');
   }),
   sortedSongs: Ember.computed.sort('matchingSongs','sortProperties'),
+
+  songCreationStarted: false,
+
+  newSongPlaceholder: Ember.computed('model.name', function() {
+    var bandName = this.get('model.name');
+    return `New ${capitalize(bandName)} song`;
+  }),
 
   canCreateSong: Ember.computed('songCreationStarted', 'model.songs.length', function() {
     return this.get('songCreationStarted') ||
