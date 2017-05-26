@@ -130,6 +130,7 @@ test('Create a new song in two steps', function(assert) {
     //   JSON.stringify(response)];
     // });
 
+    // httpStubs.stubCreateSong(this,1);
     // httpStubs.stubSongs(this, 1, [
     //   {
     //     id: 1,
@@ -139,7 +140,6 @@ test('Create a new song in two steps', function(assert) {
     //     }
     //   }
     // ]);
-    // httpStubs.stubCreateSong(this,1);
 
 
     this.post('/songs', function() {
