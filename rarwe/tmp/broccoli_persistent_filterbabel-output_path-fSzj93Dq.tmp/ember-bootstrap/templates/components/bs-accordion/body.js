@@ -1,0 +1,3 @@
+define("ember-bootstrap/templates/components/bs-accordion/body", ["exports"], function (exports) {
+  exports.default = Ember.HTMLBars.template({ "id": "0FZ3EYdk", "block": "{\"statements\":[[\"block\",[\"bs-collapse\"],null,[[\"collapsed\",\"class\"],[[\"get\",[\"collapsed\"]],\"panel-collapse\"]],0]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"panel-body\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"yield\",\"default\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "ember-bootstrap/templates/components/bs-accordion/body.hbs" } });
+});

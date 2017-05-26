@@ -1,0 +1,3 @@
+define("ember-bootstrap/templates/components/bs-navbar/content", ["exports"], function (exports) {
+  exports.default = Ember.HTMLBars.template({ "id": "Va5sYL1o", "block": "{\"statements\":[[\"yield\",\"default\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "ember-bootstrap/templates/components/bs-navbar/content.hbs" } });
+});

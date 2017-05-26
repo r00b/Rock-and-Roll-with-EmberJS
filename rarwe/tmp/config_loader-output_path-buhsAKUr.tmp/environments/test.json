@@ -1,0 +1,1 @@
+{"modulePrefix":"rarwe","environment":"test","rootURL":"/","locationType":"none","EmberENV":{"FEATURES":{},"EXTEND_PROTOTYPES":{"Date":false}},"APP":{"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"rarwe","version":"0.0.0+a89eb99b"},"exportApplicationGlobal":true}
