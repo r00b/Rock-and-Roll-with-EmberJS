@@ -1,0 +1,3 @@
+define("rarwe/templates/loading", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template({ "id": "wzBeGu9H", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"loading-pane\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"loading-message\"],[\"flush-element\"],[\"text\",\"\\n    Loading data\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"spinner\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "rarwe/templates/loading.hbs" } });
+});

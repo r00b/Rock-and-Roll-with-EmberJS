@@ -1,0 +1,3 @@
+define("ember-bootstrap/templates/components/bs-modal/header/close", ["exports"], function (exports) {
+  exports.default = Ember.HTMLBars.template({ "id": "UmGoZcDv", "block": "{\"statements\":[[\"open-element\",\"span\",[]],[\"static-attr\",\"aria-hidden\",\"true\"],[\"flush-element\"],[\"text\",\"×\"],[\"close-element\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "ember-bootstrap/templates/components/bs-modal/header/close.hbs" } });
+});
