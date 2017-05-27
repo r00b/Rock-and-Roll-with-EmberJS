@@ -1,3 +1,0 @@
-define("rarwe/templates/bands/band/error", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "haL4A/SV", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"error-pane\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"error-message\"],[\"flush-element\"],[\"text\",\"\\n    Something went wrong while fetching data for the band.\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "rarwe/templates/bands/band/error.hbs" } });
-});

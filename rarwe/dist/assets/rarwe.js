@@ -568,36 +568,11 @@ define("rarwe/components/liquid-versions", ["exports", "liquid-fire/components/l
     }
   });
 });
-define('rarwe/components/star-rating', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Component.extend({
-    tagName: 'div',
-    classNames: ['rating-panel'],
-    rating: 0,
-    maxRating: 5,
-    item: null,
-    "on-click": null,
-
-    stars: _ember['default'].computed('rating', 'maxRating', function () {
-      var fullStars = this.starRange(1, this.get('rating'), 'full');
-      var emptyStars = this.starRange(this.get('rating') + 1, this.get('maxRating'), 'empty');
-      return fullStars.concat(emptyStars);
-    }),
-
-    starRange: function starRange(start, end, type) {
-      var starsData = [];
-      for (var i = start; i <= end; i++) {
-        starsData.push({ rating: i, full: type === 'full' });
-      }
-      return starsData;
-    },
-
-    actions: {
-      setRating: function setRating(newRating) {
-        this.get('on-click')({
-          item: this.get('item'),
-          rating: newRating
-        });
-      }
+define('rarwe/components/star-rating', ['exports', 'ember-cli-star-rating/components/star-rating'], function (exports, _emberCliStarRatingComponentsStarRating) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberCliStarRatingComponentsStarRating['default'];
     }
   });
 });
@@ -1173,9 +1148,6 @@ define("rarwe/templates/bands/band/songs", ["exports"], function (exports) {
 define("rarwe/templates/bands/index", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "nCXeVlg4", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"list-group\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"list-group-item empty-list\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"empty-message\"],[\"flush-element\"],[\"text\",\"\\n      Select a band.\\n    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "rarwe/templates/bands/index.hbs" } });
 });
-define("rarwe/templates/components/star-rating", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "srm/pyx8", "block": "{\"statements\":[[\"block\",[\"liquid-bind\"],[[\"get\",[\"stars\"]]],null,1]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"#\"],[\"dynamic-attr\",\"class\",[\"concat\",[\"star-rating glyphicon \",[\"helper\",[\"if\"],[[\"get\",[\"star\",\"full\"]],\"glyphicon-star\",\"glyphicon-star-empty\"],null]]]],[\"modifier\",[\"action\"],[[\"get\",[null]],\"setRating\",[\"get\",[\"star\",\"rating\"]]]],[\"flush-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"star\"]},{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"liquidStars\"]]],null,0]],\"locals\":[\"liquidStars\"]}],\"hasPartials\":false}", "meta": { "moduleName": "rarwe/templates/components/star-rating.hbs" } });
-});
 define("rarwe/templates/loading", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "wzBeGu9H", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"loading-pane\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"loading-message\"],[\"flush-element\"],[\"text\",\"\\n    Loading data\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"spinner\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "rarwe/templates/loading.hbs" } });
 });
@@ -1357,6 +1329,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("rarwe/app")["default"].create({"name":"rarwe","version":"0.0.0+6d28ae86"});
+  require("rarwe/app")["default"].create({"name":"rarwe","version":"0.0.0+bfc1c524"});
 }
 //# sourceMappingURL=rarwe.map

@@ -86776,6 +86776,44 @@ define("ember-cli-app-version/utils/regexp", ["exports"], function (exports) {
   var shaRegExp = /[a-z\d]{8}/;
   exports.shaRegExp = shaRegExp;
 });
+define('ember-cli-star-rating/components/star-rating', ['exports', 'ember', 'ember-cli-star-rating/templates/components/star-rating'], function (exports, _ember, _emberCliStarRatingTemplatesComponentsStarRating) {
+  exports['default'] = _ember['default'].Component.extend({
+    layout: _emberCliStarRatingTemplatesComponentsStarRating['default'],
+    tagName: 'div',
+    classNames: ['rating-panel'],
+
+    rating: 0,
+    maxRating: 5,
+    item: null,
+    "on-click": '',
+
+    stars: _ember['default'].computed('rating', 'maxRating', function () {
+      var fullStars = this.starRange(1, this.get('rating'), 'full');
+      var emptyStars = this.starRange(this.get('rating') + 1, this.get('maxRating'), 'empty');
+      return fullStars.concat(emptyStars);
+    }),
+
+    starRange: function starRange(start, end, type) {
+      var starsData = [];
+      for (var i = start; i <= end; i++) {
+        starsData.push({ rating: i, full: type === 'full' });
+      }
+      return starsData;
+    },
+
+    actions: {
+      setRating: function setRating(newRating) {
+        this.get('on-click')({
+          item: this.get('item'),
+          rating: newRating
+        });
+      }
+    }
+  });
+});
+define("ember-cli-star-rating/templates/components/star-rating", ["exports"], function (exports) {
+  exports.default = Ember.HTMLBars.template({ "id": "05yXagjs", "block": "{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"stars\"]]],null,0]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"#\"],[\"dynamic-attr\",\"class\",[\"concat\",[\"star-rating glyphicon \",[\"helper\",[\"if\"],[[\"get\",[\"star\",\"full\"]],\"glyphicon-star\",\"glyphicon-star-empty\"],null]]]],[\"modifier\",[\"action\"],[[\"get\",[null]],\"setRating\",[\"get\",[\"star\",\"rating\"]]]],[\"flush-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"star\"]}],\"hasPartials\":false}", "meta": { "moduleName": "ember-cli-star-rating/templates/components/star-rating.hbs" } });
+});
 define("ember-data/-private/adapters", ["exports", "ember-data/adapters/json-api", "ember-data/adapters/rest"], function (exports, _jsonApi, _rest) {
   "use strict";
 

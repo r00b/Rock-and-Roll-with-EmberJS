@@ -1,3 +1,0 @@
-define("ember-wormhole/templates/components/ember-wormhole", ["exports"], function (exports) {
-  exports.default = Ember.HTMLBars.template({ "id": "/cm8ocrP", "block": "{\"statements\":[[\"append\",[\"helper\",[\"unbound\"],[[\"get\",[\"_wormholeHeadNode\"]]],null],false],[\"yield\",\"default\"],[\"append\",[\"helper\",[\"unbound\"],[[\"get\",[\"_wormholeTailNode\"]]],null],false]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "ember-wormhole/templates/components/ember-wormhole.hbs" } });
-});

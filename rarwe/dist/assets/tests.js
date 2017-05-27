@@ -283,11 +283,6 @@ define('rarwe/tests/app.lint-test', ['exports'], function (exports) {
     assert.ok(true, 'app.js should pass ESLint\n\n');
   });
 
-  QUnit.test('components/star-rating.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'components/star-rating.js should pass ESLint\n\n');
-  });
-
   QUnit.test('controllers/bands.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'controllers/bands.js should pass ESLint\n\n');
