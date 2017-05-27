@@ -278,6 +278,11 @@ define('rarwe/tests/app.lint-test', ['exports'], function (exports) {
 
   QUnit.module('ESLint | app');
 
+  QUnit.test('adapters/application.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'adapters/application.js should pass ESLint\n\n');
+  });
+
   QUnit.test('app.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app.js should pass ESLint\n\n');
@@ -622,6 +627,11 @@ define('rarwe/tests/tests.lint-test', ['exports'], function (exports) {
     assert.ok(true, 'test-helper.js should pass ESLint\n\n');
   });
 
+  QUnit.test('unit/adapters/application-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/adapters/application-test.js should pass ESLint\n\n');
+  });
+
   QUnit.test('unit/controllers/bands/band/songs-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/controllers/bands/band/songs-test.js should pass ESLint\n\n');
@@ -635,6 +645,19 @@ define('rarwe/tests/tests.lint-test', ['exports'], function (exports) {
   QUnit.test('unit/routes/bands/band-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/bands/band-test.js should pass ESLint\n\n');
+  });
+});
+define('rarwe/tests/unit/adapters/application-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
+
+  (0, _emberQunit.moduleFor)('adapter:application', 'Unit | Adapter | application', {
+    // Specify the other units that are required for this test.
+    // needs: ['serializer:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it exists', function (assert) {
+    var adapter = this.subject();
+    assert.ok(adapter);
   });
 });
 define('rarwe/tests/unit/controllers/bands/band/songs-test', ['exports', 'ember', 'ember-qunit'], function (exports, _ember, _emberQunit) {

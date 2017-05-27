@@ -2,6 +2,11 @@
 
 
 
+define('rarwe/adapters/application', ['exports', 'ember-data', 'rarwe/config/environment'], function (exports, _emberData, _rarweConfigEnvironment) {
+  exports['default'] = _emberData['default'].JSONAPIAdapter.extend({
+    host: _rarweConfigEnvironment['default'].apiHost
+  });
+});
 define('rarwe/app', ['exports', 'ember', 'rarwe/resolver', 'ember-load-initializers', 'rarwe/config/environment'], function (exports, _ember, _rarweResolver, _emberLoadInitializers, _rarweConfigEnvironment) {
 
   var App = undefined;
@@ -1348,6 +1353,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("rarwe/app")["default"].create({"name":"rarwe","version":"0.0.0+164c4b39"});
+  require("rarwe/app")["default"].create({"name":"rarwe","version":"0.0.0+4b590388"});
 }
 //# sourceMappingURL=rarwe.map
