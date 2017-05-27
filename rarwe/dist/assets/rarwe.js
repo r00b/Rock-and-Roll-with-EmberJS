@@ -583,9 +583,10 @@ define('rarwe/controllers/bands', ['exports', 'ember'], function (exports, _embe
   exports['default'] = _ember['default'].Controller.extend({
     name: '',
 
-    isAddButtonDisabled: _ember['default'].computed('name', function () {
-      return _ember['default'].isEmpty(this.get('name'));
-    })
+    // isAddButtonDisabled: Ember.computed('name', function() {
+    //   return Ember.isEmpty(this.get('name'));
+    // })
+    isAddButtonDisabled: _ember['default'].computed.empty('name')
   });
 });
 define('rarwe/controllers/bands/band/details', ['exports', 'ember'], function (exports, _ember) {
@@ -604,7 +605,12 @@ define('rarwe/controllers/bands/band/details', ['exports', 'ember'], function (e
   });
 });
 define('rarwe/controllers/bands/band/songs', ['exports', 'ember', 'rarwe/helpers/capitalize'], function (exports, _ember, _rarweHelpersCapitalize) {
-  exports['default'] = _ember['default'].Controller.extend({
+  // const { Controller, computed, isEmpty } = Ember;
+  var Controller = _ember['default'].Controller;
+  var computed = _ember['default'].computed;
+
+  // export default Ember.Controller.extend({
+  exports['default'] = Controller.extend({ // destructure
 
     queryParams: {
       sortBy: 'sort',
@@ -613,8 +619,10 @@ define('rarwe/controllers/bands/band/songs', ['exports', 'ember', 'rarwe/helpers
 
     searchTerm: '',
     matchingSongs: _ember['default'].computed('model.songs.@each.title', 'searchTerm', function () {
-      var searchTerm = this.get('searchTerm').toLowerCase();
+      var _this = this;
+
       return this.get('model.songs').filter(function (song) {
+        var searchTerm = _this.get('searchTerm').toLowerCase();
         return song.get('title').toLowerCase().indexOf(searchTerm) !== -1;
       });
     }),
@@ -639,13 +647,17 @@ define('rarwe/controllers/bands/band/songs', ['exports', 'ember', 'rarwe/helpers
       return 'New ' + (0, _rarweHelpersCapitalize.capitalize)(bandName) + ' song';
     }),
 
-    canCreateSong: _ember['default'].computed('songCreationStarted', 'model.songs.length', function () {
-      return this.get('songCreationStarted') || this.get('model.songs.length');
-    }),
+    // canCreateSong: Ember.computed('songCreationStarted', 'model.songs.length', function() {
+    //   return this.get('songCreationStarted') ||
+    //   this.get('model.songs.length');
+    // }),
+    hasSongs: computed.bool('model.songs.length'),
+    canCreateSong: computed.or('songCreationStarted', 'hasSongs'),
 
-    isAddButtonDisabled: _ember['default'].computed('title', function () {
-      return _ember['default'].isEmpty(this.get('title'));
-    }),
+    // isAddButtonDisabled: computed('title', function() {
+    //   return isEmpty(this.get('title'));
+    // }),
+    isAddButtonDisabled: _ember['default'].computed.empty('title'),
 
     actions: {
       // setSorting: function(option) {
@@ -658,8 +670,11 @@ define('rarwe/controllers/bands/band/songs', ['exports', 'ember', 'rarwe/helpers
 
       // updateRating: function(song, rating) {
       updateRating: function updateRating(params) {
-        var song = params.item,
-            rating = params.rating;
+        // let song = params.item,
+        // rating = params.rating;
+        var song = params.item;
+        var rating = params.rating;
+
         if (song.get('rating') === rating) {
           rating = 0;
         }

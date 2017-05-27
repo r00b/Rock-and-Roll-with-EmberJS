@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import { capitalize } from '../../../helpers/capitalize';
+// const { Controller, computed, isEmpty } = Ember;
+const { Controller, computed } = Ember;
 
-export default Ember.Controller.extend({
+// export default Ember.Controller.extend({
+export default Controller.extend({ // destructure
 
   queryParams: {
     sortBy: 'sort',
@@ -10,8 +13,8 @@ export default Ember.Controller.extend({
 
   searchTerm: '',
   matchingSongs: Ember.computed('model.songs.@each.title','searchTerm', function() {
-    var searchTerm = this.get('searchTerm').toLowerCase();
-    return this.get('model.songs').filter(function(song) {
+    return this.get('model.songs').filter((song) => {
+      let searchTerm = this.get('searchTerm').toLowerCase();
       return song.get('title').toLowerCase().indexOf(searchTerm) !== -1;
     });
   }),
@@ -36,14 +39,17 @@ export default Ember.Controller.extend({
     return `New ${capitalize(bandName)} song`;
   }),
 
-  canCreateSong: Ember.computed('songCreationStarted', 'model.songs.length', function() {
-    return this.get('songCreationStarted') ||
-    this.get('model.songs.length');
-  }),
+  // canCreateSong: Ember.computed('songCreationStarted', 'model.songs.length', function() {
+  //   return this.get('songCreationStarted') ||
+  //   this.get('model.songs.length');
+  // }),
+  hasSongs: computed.bool('model.songs.length'),
+  canCreateSong: computed.or('songCreationStarted', 'hasSongs'),
 
-  isAddButtonDisabled: Ember.computed('title', function() {
-    return Ember.isEmpty(this.get('title'));
-  }),
+  // isAddButtonDisabled: computed('title', function() {
+  //   return isEmpty(this.get('title'));
+  // }),
+  isAddButtonDisabled: Ember.computed.empty('title'),
 
   actions: {
     // setSorting: function(option) {
@@ -56,8 +62,9 @@ export default Ember.Controller.extend({
 
     // updateRating: function(song, rating) {
     updateRating: function(params) {
-      var song = params.item,
-      rating = params.rating;
+      // let song = params.item,
+      // rating = params.rating;
+      let { item: song, rating } = params;
       if (song.get('rating') === rating) {
         rating = 0;
       }
