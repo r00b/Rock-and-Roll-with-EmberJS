@@ -86778,18 +86778,23 @@ define("ember-cli-app-version/utils/regexp", ["exports"], function (exports) {
 });
 define('ember-cli-star-rating/components/star-rating', ['exports', 'ember', 'ember-cli-star-rating/templates/components/star-rating'], function (exports, _ember, _emberCliStarRatingTemplatesComponentsStarRating) {
   exports['default'] = _ember['default'].Component.extend({
-    layout: _emberCliStarRatingTemplatesComponentsStarRating['default'],
     tagName: 'div',
     classNames: ['rating-panel'],
+
+    layout: _emberCliStarRatingTemplatesComponentsStarRating['default'],
 
     rating: 0,
     maxRating: 5,
     item: null,
-    "on-click": '',
+    "on-click": null,
+
+    fullClassNames: 'glyphicon glyphicon-star',
+    emptyClassNames: 'glyphicon glyphicon-star-empty',
 
     stars: _ember['default'].computed('rating', 'maxRating', function () {
-      var fullStars = this.starRange(1, this.get('rating'), 'full');
-      var emptyStars = this.starRange(this.get('rating') + 1, this.get('maxRating'), 'empty');
+      var rating = Math.round(this.get('rating'));
+      var fullStars = this.starRange(1, rating, 'full');
+      var emptyStars = this.starRange(rating + 1, this.get('maxRating'), 'empty');
       return fullStars.concat(emptyStars);
     }),
 
@@ -86803,16 +86808,24 @@ define('ember-cli-star-rating/components/star-rating', ['exports', 'ember', 'emb
 
     actions: {
       setRating: function setRating(newRating) {
-        this.get('on-click')({
-          item: this.get('item'),
-          rating: newRating
-        });
+        var actionType = typeof this.attrs['on-click'];
+        if (actionType === 'function') {
+          this.attrs['on-click']({
+            item: this.get('item'),
+            rating: newRating
+          });
+        } else {
+          this.sendAction('on-click', {
+            item: this.get('item'),
+            rating: newRating
+          });
+        }
       }
     }
   });
 });
 define("ember-cli-star-rating/templates/components/star-rating", ["exports"], function (exports) {
-  exports.default = Ember.HTMLBars.template({ "id": "05yXagjs", "block": "{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"stars\"]]],null,0]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"#\"],[\"dynamic-attr\",\"class\",[\"concat\",[\"star-rating glyphicon \",[\"helper\",[\"if\"],[[\"get\",[\"star\",\"full\"]],\"glyphicon-star\",\"glyphicon-star-empty\"],null]]]],[\"modifier\",[\"action\"],[[\"get\",[null]],\"setRating\",[\"get\",[\"star\",\"rating\"]]]],[\"flush-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"star\"]}],\"hasPartials\":false}", "meta": { "moduleName": "ember-cli-star-rating/templates/components/star-rating.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "oUVbgPuh", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"has-block\",\"default\"]],null,2,1]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"#\"],[\"dynamic-attr\",\"class\",[\"concat\",[\"star-rating \",[\"helper\",[\"if\"],[[\"get\",[\"star\",\"full\"]],[\"get\",[\"fullClassNames\"]],[\"get\",[\"emptyClassNames\"]]],null]]]],[\"modifier\",[\"action\"],[[\"get\",[null]],\"setRating\",[\"get\",[\"star\",\"rating\"]]]],[\"flush-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"star\"]},{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"stars\"]]],null,0]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"yield\",\"default\",[[\"get\",[\"stars\"]],[\"helper\",[\"action\"],[[\"get\",[null]],\"setRating\"],null]]],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "ember-cli-star-rating/templates/components/star-rating.hbs" } });
 });
 define("ember-data/-private/adapters", ["exports", "ember-data/adapters/json-api", "ember-data/adapters/rest"], function (exports, _jsonApi, _rest) {
   "use strict";

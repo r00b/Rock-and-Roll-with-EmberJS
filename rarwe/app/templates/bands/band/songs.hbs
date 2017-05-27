@@ -44,7 +44,17 @@
   {{#each sortedSongs as |song|}}
   <li class="list-group-item song">
     {{capitalize song.title}}
-    {{star-rating rating=song.rating item=song on-click=(action "updateRating")}}
+    <!-- {{#star-rating item=song rating=song.rating as |stars|}}
+    {{#liquid-bind stars as |liquidStars|}}
+    {{#each liquidStars as |star|}}
+    <a href="#" {{action "updateRating" song star.rating}}
+    class="star-rating glyphicon {{if star.full
+      'glyphicon-star' 'glyphicon-star-empty'}}">
+    </a>
+    {{/each}}
+    {{/liquid-bind}}
+    {{/star-rating}} -->
+    {{star-rating item=song rating=song.rating on-click=(action "updateRating")}}
   </li>
   {{/each}}
   {{#unless canCreateSong}}

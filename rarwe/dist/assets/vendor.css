@@ -6773,3 +6773,8 @@ button.close {
     overflow: hidden; /* Prevent margin collapse */
 }
 
+a.star-rating {
+  color: inherit;
+  text-decoration: none;
+}
+
